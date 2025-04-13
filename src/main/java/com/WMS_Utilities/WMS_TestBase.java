@@ -49,13 +49,14 @@ public class WMS_TestBase implements WMS_GlobalProperties {
 	private KeepScreenAwake keepAwake;
 	
 	public WebDriver invokeBrowser() throws InterruptedException {
-		ChromeOptions options =new ChromeOptions();
-		WebDriverManager.chromeDriver().setup();
-		driver=new ChromeDriver(options);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		return driver;
-	}
+    ChromeOptions options = new ChromeOptions();
+    WebDriverManager.chromedriver().setup(); // <-- Correct method name
+    driver = new ChromeDriver(options);
+    driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    return driver;
+}
+
 
 	// public WebDriver invokeBrowser() throws InterruptedException {
 
