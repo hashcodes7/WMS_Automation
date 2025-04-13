@@ -45,3 +45,8 @@ jobs:
           git add Reports/*.html
           git commit -m "Add test report [skip ci]" || echo "No changes to commit"
           git push origin main
+      - name: Print Report Link
+        run: |
+          REPORT_NAME=$(ls Reports/*.html | head -n 1 | xargs basename)
+          echo "🔗 Report URL: https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/Reports/$REPORT_NAME"
+
