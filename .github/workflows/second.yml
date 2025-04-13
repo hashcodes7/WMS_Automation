@@ -47,6 +47,7 @@ jobs:
           git push origin main
       - name: Print Report Link
         run: |
-          REPORT_NAME=$(ls Reports/*.html | head -n 1 | xargs basename)
+          REPORT_PATH=$(find Reports -name "*.html" | head -n 1)
+          REPORT_NAME=$(basename "$REPORT_PATH")
           echo "🔗 Report URL: https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/Reports/$REPORT_NAME"
 
