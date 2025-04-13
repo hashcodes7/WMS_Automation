@@ -50,8 +50,8 @@ public class WMS_TestBase implements WMS_GlobalProperties {
 	
 	public WebDriver invokeBrowser() throws InterruptedException {
 		ChromeOptions options =new ChromeOptions();
-		WebDriverManager.chromedriver().setup();
-		driver=new Chromedriver(options);
+		WebDriverManager.chromeDriver().setup();
+		driver=new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		return driver;
