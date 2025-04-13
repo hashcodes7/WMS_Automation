@@ -3479,39 +3479,47 @@ public class DataProviders implements WMS_GlobalProperties {
 		return myData.iterator();
 	}
 
-	@DataProvider(name = "TC292_P0_E2E_CreateColors_Solid")
-	public static Iterator<Object[]> TC292_P0_E2E_CreateColors_Solid() throws InvalidFormatException, IOException {
-		ArrayList<Object[]> myData = new ArrayList<Object[]>();
-		String filePath = System.getProperty("user.dir") + FILEPATH;
-		File file = new File(filePath + "\\" + FILENAME);
-		FileInputStream inputStream = new FileInputStream(file);
-		@SuppressWarnings("resource")
-		XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-		sheet = workbook.getSheet("SOLOPLM");
-		int numOfRows = sheet.getLastRowNum();
-		System.out.println(numOfRows);
-		String TestType, colortype, redvalue, bluevalue, greenvalue, colorfamily, standardprovider, colorcode,
-				colorname, providercolorname;
-		for (int i = 1; i <= numOfRows; i++) {
-			TestType = sheet.getRow(i).getCell(0).getStringCellValue();
-			System.out.println("Output for testType --->" + TestType);
-			if ("TC292_P0_E2E_CreateColors_Solid".equalsIgnoreCase(TestType)) {
-				colortype = sheet.getRow(i).getCell(1).getStringCellValue();
-				redvalue = sheet.getRow(i).getCell(2).getStringCellValue();
-				bluevalue = sheet.getRow(i).getCell(3).getStringCellValue();
-				greenvalue = sheet.getRow(i).getCell(4).getStringCellValue();
-				colorname = sheet.getRow(i).getCell(5).getStringCellValue();
-				colorfamily = sheet.getRow(i).getCell(6).getStringCellValue();
-				standardprovider = sheet.getRow(i).getCell(7).getStringCellValue();
-				colorcode = sheet.getRow(i).getCell(8).getStringCellValue();
-				providercolorname = sheet.getRow(i).getCell(9).getStringCellValue();
-				myData.add(new Object[] { TestType, colortype, redvalue, bluevalue, greenvalue, colorfamily,
-						standardprovider, colorcode, colorname, providercolorname });
-			}
-		}
-		return myData.iterator();
-	}
 
+@DataProvider(name = "TC292_P0_E2E_CreateColors_Solid")
+public static Iterator<Object[]> TC292_P0_E2E_CreateColors_Solid() throws InvalidFormatException, IOException {
+    ArrayList<Object[]> myData = new ArrayList<Object[]>();
+
+    // Use OS-independent path
+    Path filePath = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "PLM_TestData.xlsx");
+    FileInputStream inputStream = new FileInputStream(filePath.toFile());
+
+    @SuppressWarnings("resource")
+    XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+    sheet = workbook.getSheet("SOLOPLM");
+
+    int numOfRows = sheet.getLastRowNum();
+    System.out.println(numOfRows);
+
+    String TestType, colortype, redvalue, bluevalue, greenvalue, colorfamily, standardprovider, colorcode, colorname, providercolorname;
+
+    for (int i = 1; i <= numOfRows; i++) {
+        TestType = sheet.getRow(i).getCell(0).getStringCellValue();
+        System.out.println("Output for testType --->" + TestType);
+
+        if ("TC292_P0_E2E_CreateColors_Solid".equalsIgnoreCase(TestType)) {
+            colortype = sheet.getRow(i).getCell(1).getStringCellValue();
+            redvalue = sheet.getRow(i).getCell(2).getStringCellValue();
+            bluevalue = sheet.getRow(i).getCell(3).getStringCellValue();
+            greenvalue = sheet.getRow(i).getCell(4).getStringCellValue();
+            colorname = sheet.getRow(i).getCell(5).getStringCellValue();
+            colorfamily = sheet.getRow(i).getCell(6).getStringCellValue();
+            standardprovider = sheet.getRow(i).getCell(7).getStringCellValue();
+            colorcode = sheet.getRow(i).getCell(8).getStringCellValue();
+            providercolorname = sheet.getRow(i).getCell(9).getStringCellValue();
+
+            myData.add(new Object[] {
+                TestType, colortype, redvalue, bluevalue, greenvalue, colorfamily,
+                standardprovider, colorcode, colorname, providercolorname
+            });
+        }
+    }
+    return myData.iterator();
+}
 	@DataProvider(name = "TC293_P0_E2E_Change_AdoptionGBValue")
 	public static Iterator<Object[]> TC293_P0_E2E_Change_AdoptionGBValue() throws InvalidFormatException, IOException {
 		ArrayList<Object[]> myData = new ArrayList<Object[]>();
