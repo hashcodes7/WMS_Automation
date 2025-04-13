@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.awt.*;
 import java.util.UUID;
+import java.io.File;
 
 
 import org.openqa.selenium.By;
