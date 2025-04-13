@@ -47,9 +47,10 @@ jobs:
           git push origin main
       - name: Print Report Link
         run: |
-          REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}")
+          REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
           ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
           echo "🔗 Report URL: https://github.com/hashcodes7/WMS_Automation/raw/main/Reports/$ENCODED_REPORT_NAME"
+
 
 
 
