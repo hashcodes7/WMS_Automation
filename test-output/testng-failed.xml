@@ -3,16 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WMS_Inbound_Batch_1.WMS_LPN_Multi_SKU">
+      <class name="E2E_Testcases.TC292_P0_E2E_CreateColors_Solid">
         <methods>
+          <include name="setUp"/>
           <include name="afterMethod"/>
           <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="CreateSummary"/>
-          <include name="ASNExecuteCart" invocation-numbers="0"/>
           <include name="setUpend"/>
+          <include name="CreateSummary"/>
+          <include name="P0_TC_292_E2E_CreateColors_Solid" invocation-numbers="0"/>
         </methods>
-      </class> <!-- WMS_Inbound_Batch_1.WMS_LPN_Multi_SKU -->
+      </class> <!-- E2E_Testcases.TC292_P0_E2E_CreateColors_Solid -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
