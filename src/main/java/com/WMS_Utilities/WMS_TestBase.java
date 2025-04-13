@@ -312,19 +312,25 @@ public WebDriver invokeBrowser() throws InterruptedException {
 
 	}
 
-	public void setReport(String ReportName) throws InterruptedException {
-		System.out.println("ReportName is : " + ReportName);
-		htmlReporter = new ExtentHtmlReporter(
-				System.getProperty("user.dir") + "\\Reports\\" + ReportName + autoGenSerialNo() + ".html");
-		extent = new ExtentReports();
+public void setReport(String ReportName) throws InterruptedException {
+    System.out.println("ReportName is : " + ReportName);
+    
+    // Create reports folder if it doesn't exist
+    String reportsDir = System.getProperty("user.dir") + File.separator + "reports";
+    new File(reportsDir).mkdirs(); // Create the folder if it doesn't exist
 
-		extent.attachReporter(htmlReporter);
+    // Use File.separator for cross-platform compatibility
+    String reportPath = reportsDir + File.separator + ReportName + autoGenSerialNo() + ".html";
+    
+    htmlReporter = new ExtentHtmlReporter(reportPath);
+    extent = new ExtentReports();
+    extent.attachReporter(htmlReporter);
 
-		htmlReporter.config().setDocumentTitle("PLM Automation");
-		htmlReporter.config().setReportName("PLM Automation-Test Report");
-		htmlReporter.config().setTheme(Theme.STANDARD);
+    htmlReporter.config().setDocumentTitle("PLM Automation");
+    htmlReporter.config().setReportName("PLM Automation-Test Report");
+    htmlReporter.config().setTheme(Theme.STANDARD);
+}
 
-	}
 
 	public void openNewTabAndSwitch() {
 
