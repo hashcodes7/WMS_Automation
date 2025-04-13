@@ -25,8 +25,8 @@ jobs:
         run: mvn -Dtest=E2E_Testcases.TC292_P0_E2E_CreateColors_Solid test
 
       - name: Upload HTML Report
-        if: always()  # Upload even if tests fail
-        uses: actions/upload-artifact@v3
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: ExtentReport
-          path: Reports/  # Ensure this matches the folder created by your code
+          path: Reports/
