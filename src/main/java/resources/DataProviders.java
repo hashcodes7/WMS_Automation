@@ -3487,7 +3487,7 @@ public static Iterator<Object[]> TC292_P0_E2E_CreateColors_Solid() throws Invali
     ArrayList<Object[]> myData = new ArrayList<Object[]>();
 
     // Use OS-independent path
-    Path filePath = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "PLM_TestData.xlsx");
+    Path filePath = Paths.get(System.getProperty("user.dir"), "src", "PLM_TestData.xlsx");
     FileInputStream inputStream = new FileInputStream(filePath.toFile());
 
     @SuppressWarnings("resource")
