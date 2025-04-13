@@ -1,9 +1,9 @@
 package com.WMS_Utilities;
 
 public interface WMS_GlobalProperties {
-	String CHROME_KEY="webdriver.chrome.driver";
-//	String CHROME_PATH="C:\\Sandip\\chromedriver-win64\\chromedriver.exe";
-	String CHROME_PATH="C:\\Users\\2276537\\OneDrive - Cognizant\\Desktop\\Automation\\chromedriver-win64\\chromedriver.exe";
+// 	String CHROME_KEY="webdriver.chrome.driver";
+// //	String CHROME_PATH="C:\\Sandip\\chromedriver-win64\\chromedriver.exe";
+// 	String CHROME_PATH="C:\\Users\\2276537\\OneDrive - Cognizant\\Desktop\\Automation\\chromedriver-win64\\chromedriver.exe";
 
 //	String URL="https://wcadmin:wcadminps11@flexplmstg.levi.com/Windchill/rfa/jsp/main/Main.jsp";
 	//String URL="https://wcadmin:wcadminqa12@flexplmqa.levi.com/Windchill/rfa/jsp/main/Main.jsp";
