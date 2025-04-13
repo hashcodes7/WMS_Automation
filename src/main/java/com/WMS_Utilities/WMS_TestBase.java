@@ -317,7 +317,7 @@ public void setReport(String ReportName) throws InterruptedException {
     System.out.println("ReportName is : " + ReportName);
     
     // Create reports folder if it doesn't exist
-    String reportsDir = System.getProperty("user.dir") + File.separator + "reports";
+    String reportsDir = System.getProperty("user.dir") + File.separator + "Reports";
     new File(reportsDir).mkdirs(); // Create the folder if it doesn't exist
 
     // Use File.separator for cross-platform compatibility
