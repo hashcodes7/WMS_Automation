@@ -49,7 +49,8 @@ jobs:
         run: |
           REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
           ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
-          echo "🔗 Report URL: https://github.com/hashcodes7/WMS_Automation/raw/main/Reports/$ENCODED_REPORT_NAME"
+          echo "🔗 Click to open the report: https://github.com/hashcodes7/WMS_Automation/raw/main/Reports/$ENCODED_REPORT_NAME"
+
 
 
 
