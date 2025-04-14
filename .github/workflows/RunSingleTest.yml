@@ -1,3 +1,4 @@
+name: Run Single Test - TC292_P0_E2E_CreateColors_Solid
 on:
   workflow_dispatch:
 
