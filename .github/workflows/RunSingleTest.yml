@@ -23,6 +23,15 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      # Cache Maven dependencies to speed up future builds
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository  # Maven local repository path where dependencies are stored
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}  # Cache key based on pom.xml
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Run TC292_P0_E2E_CreateColors_Solid
         run: mvn -Dtest=E2E_Testcases.TC292_P0_E2E_CreateColors_Solid test
 
@@ -65,13 +74,7 @@ jobs:
             fi
             echo "⏳ Waiting..."
             sleep 10
-          done
-      # - name: Generate Live Report URL
-      #   run: |
-      #       REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
-      #       ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri | sed 's/\n//g')
-      #       echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
-      
+
       - name: Print Report Link
         run: |
           # Find the latest .html report
@@ -87,14 +90,3 @@ jobs:
           echo "Final Report Name: $REPORT_NAME"
           echo "Encoded Report Name: $ENCODED_REPORT_NAME"
           echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
-
-
-
-
-
-
-
-
-
-
-
