@@ -80,7 +80,7 @@ jobs:
           echo "Encoded Report Name: $ENCODED_REPORT_NAME"
           FINAL_REPORT_NAME=$(echo "$ENCODED_REPORT_NAME" | tr -d '\n')
           echo "Final Report Name: $FINAL_REPORT_NAME"
-          echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$FINAL_REPORT_NAME"
+          echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$REPORT_NAME"
 
 
 
