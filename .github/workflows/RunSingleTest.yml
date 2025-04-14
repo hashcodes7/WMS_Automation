@@ -69,7 +69,7 @@ jobs:
       - name: Generate Live Report URL
         run: |
             REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
-            ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri | tr -d '\n')
+            ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri | sed 's/\n//g')
             echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
 
 
