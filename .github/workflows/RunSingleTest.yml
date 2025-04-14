@@ -74,11 +74,14 @@ jobs:
       
       - name: Print Report Link
         run: |
-          REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
+          REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\r\n')
           echo "Final Report Name: $REPORT_NAME"
+          
           ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
           echo "Encoded Report Name: $ENCODED_REPORT_NAME"
+          
           echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
+
 
 
 
