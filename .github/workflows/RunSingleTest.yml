@@ -75,7 +75,7 @@ jobs:
       - name: Print Report Link
         run: |
           REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}")
-          echo "Final Report Name: $FINAL_REPORT_NAME"
+          echo "Final Report Name: $REPORT_NAME"
           ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
           echo "Encoded Report Name: $ENCODED_REPORT_NAME"
           FINAL_REPORT_NAME=$(echo "$ENCODED_REPORT_NAME" | tr -d '\n')
