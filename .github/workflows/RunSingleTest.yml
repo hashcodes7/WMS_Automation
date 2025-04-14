@@ -74,13 +74,20 @@ jobs:
       
       - name: Print Report Link
         run: |
-          REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\r\n')
+          # Find the latest .html report
+          REPORT_PATH=$(find Reports -name "*.html" | sort | tail -n 1)
+          
+          # Get the filename (basename) and clean any characters after .html
+          REPORT_NAME=$(basename "$REPORT_PATH" | sed -E 's/\.html.*/.html/')
+          
+          # Encode the cleaned report name for the URL
+          ENCODED_REPORT_NAME=$(printf "%s" "$REPORT_NAME" | jq -sRr @uri)
+          
+          # Output the final result
           echo "Final Report Name: $REPORT_NAME"
-          
-          ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
           echo "Encoded Report Name: $ENCODED_REPORT_NAME"
-          
           echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
+
 
 
 
