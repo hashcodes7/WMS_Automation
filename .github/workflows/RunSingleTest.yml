@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-
+  contents: write #this is to push the report file into Report folder from virtual environment
+  id-token: write  #this is to deploy as github page
 jobs:
   run-single-test:
     runs-on: ubuntu-latest
