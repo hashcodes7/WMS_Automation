@@ -42,6 +42,31 @@ jobs:
           git add Reports/*.html
           git commit -m "Add test report [skip ci]" || echo "No changes to commit"
           git push origin main
+      
+      - name: Wait for GitHub Pages Deployment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Waiting for pages-build-deployment to complete..."
+          
+          for i in {1..30}; do
+            RUN=$(gh run list --workflow="pages-build-deployment" --branch=main --limit=1 --json databaseId,status,conclusion -q '.[0]')
+            STATUS=$(echo "$RUN" | jq -r '.status')
+            CONCLUSION=$(echo "$RUN" | jq -r '.conclusion')
+            echo "Status: $STATUS | Conclusion: $CONCLUSION"
+            if [[ "$STATUS" == "completed" ]]; then
+              if [[ "$CONCLUSION" == "success" ]]; then
+                echo "✅ Pages deployment successful!"
+                break
+              else
+                echo "❌ Pages deployment failed!"
+                exit 1
+              fi
+            fi
+            echo "⏳ Waiting..."
+            sleep 10
+          done
+          echo "🔗 Live Report URL: https://.github.io/<repo-name>/Reports/<report-name>.html"
 
 
 
