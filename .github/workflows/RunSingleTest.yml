@@ -42,30 +42,30 @@ jobs:
           git commit -m "Add test report [skip ci]" || echo "No changes to commit"
           git push origin main
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      # - name: Configure GitHub Pages
+      #   uses: actions/configure-pages@v5
 
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: Reports/
+      # - name: Upload GitHub Pages artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: Reports/
       
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
-        with:
-          emit_telemetry: false
-          token: ${{ secrets.GITHUB_TOKEN }}
-          timeout: 600000
-          error_count: 10
-          reporting_interval: 5000
-          artifact_name: github-pages
-          preview: false
+      # - name: Deploy to GitHub Pages
+      #   uses: actions/deploy-pages@v1
+      #   with:
+      #     emit_telemetry: false
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     timeout: 600000
+      #     error_count: 10
+      #     reporting_interval: 5000
+      #     artifact_name: github-pages
+      #     preview: false
           
-      - name: Print Report Link
-        run: |
-          REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
-          ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
-          echo "Here is your report just generated, click to view: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
+      # - name :Print Report Link
+      #   run: |
+      #     REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
+      #     ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri)
+      #     echo "Here is your report just generated, click to view: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
 
 
 
