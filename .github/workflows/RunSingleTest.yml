@@ -83,8 +83,7 @@ jobs:
       - name: Print Report Link
         run: |
           # Find the latest .html report
-          REPORT_PATH=$(find Reports -name "*.html" | sort | tail -n 1)
-          
+          REPORT_PATH=$(find Reports -name "*.html" -type f -exec stat --format='%Y %n' {} \; | sort -n | tail -n 1 | cut -d' ' -f2-)
           # Get the filename (basename) and clean any characters after .html
           REPORT_NAME=$(basename "$REPORT_PATH" | sed -E 's/\.html.*/.html/')
           
