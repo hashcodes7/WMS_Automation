@@ -25,8 +25,8 @@ public interface WMS_GlobalProperties {
 	String Fit_developer_URL="https://fit_developer:plm123@flexplmqa.levi.com/Windchill/rfa/jsp/main/Main.jsp";
 	String Administrator_URL="https://wcadmin:wcadminqa12@flexplmqa.levi.com/Windchill/rfa/jsp/main/Main.jsp";
 	String DevAdmin_URL="https://wcadmin:wcadmindev12@flexplmdev.levi.com/Windchill/rfa/jsp/main/Main.jsp";
-	String qa2Admin_URL="https://wcadmin:wcadminqa11@https://flexplmqa2.levi.com/Windchill/rfa/jsp/main/Main.jsp";
-	String StagingAdmin_URL="https://wcadmin:wcadminps11@https://flexplmstg.levi.com/Windchill/rfa/jsp/main/Main.jsp";
+	String qa2Admin_URL="https://wcadmin:wcadminqa11@flexplmqa2.levi.com/Windchill/rfa/jsp/main/Main.jsp";
+	String StagingAdmin_URL="https://wcadmin:wcadminps11@flexplmstg.levi.com/Windchill/rfa/jsp/main/Main.jsp";
 	
 //------------------------------------Staging URL----------------------------------------------------------------	
 	String Global_URL_STG="https://levis_global:plm123@flexplmstg.levi.com/Windchill/rfa/jsp/main/Main.jsp";
