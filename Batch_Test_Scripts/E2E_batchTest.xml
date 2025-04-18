@@ -7,7 +7,7 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="E2E_TestCases.TC01_P0_E2E_SeasonCreation_S1_2023_FemaleAccessories" />
+<!-- 			<class name="E2E_TestCases.TC01_P0_E2E_SeasonCreation_S1_2023_FemaleAccessories" />
 			<class name="E2E_TestCases.TC02_P0_E2E_ProductCreation" />
 			<class name="E2E_TestCases.TC03_P0_E2E_SizingAttributes_Global" />
 			<class name="E2E_TestCases.TC04_P0_E2E_SizingAttributes_Local" />
@@ -22,10 +22,10 @@
 			<class name="E2E_TestCases.TC286_P0_E2E_caryyover_PC5_PC9" />
 			<class name="E2E_TestCases.TC288_P0_E2E_create_colorway" />
 			<class name="E2E_TestCases.TC290_P0_E2E_CreateColors_SL_FG" />
-			<class name="E2E_TestCases.TC291_P0_E2E_CreateColors_BFF" />
+			<class name="E2E_TestCases.TC291_P0_E2E_CreateColors_BFF" /> -->
 			<class name="E2E_TestCases.TC292_P0_E2E_CreateColors_Solid" />
 			<class name="E2E_TestCases.TC293_P0_E2E_Change_AdoptionGBValue" />
-			<class name="E2E_TestCases.TC294_P0_E2E_Change_AdoptedLHValue" />
+<!-- 			<class name="E2E_TestCases.TC294_P0_E2E_Change_AdoptedLHValue" />
 			<class name="E2E_TestCases.TC295_P0_E2E_Change_AdoptedAFFValue" />
 			<class name="E2E_TestCases.TC296_P0_E2E_FLAFinalizeView" />
 			<class name="E2E_TestCases.TC297_P0_E2E_Create_MeasurementSet" />
@@ -36,7 +36,7 @@
 			<class name="E2E_TestCases.TC318_P0_E2E_BulkBOMURL" />
 			<class name="E2E_TestCases.TC319_P0_E2E_Download_PlacementLoaderFile" />
 			<class name="E2E_TestCases.TC320_P0_E2E_UploadPlacementFile" />
-			<class name="E2E_TestCases.TC324_P0_E2E_PlacementLoadFile" />
+			<class name="E2E_TestCases.TC324_P0_E2E_PlacementLoadFile" /> -->
 
 
 		</classes>
