@@ -1,4 +1,4 @@
-name: Run Single Test - TC292_P0_E2E_CreateColors_Solid
+name: Run Batch Tests E2E
 
 on:
   workflow_dispatch:
