@@ -1,0 +1,96 @@
+name: Run Single Test - TC292_P0_E2E_CreateColors_Solid
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  
+jobs:
+  run-single-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+            # Cache Maven dependencies to speed up future builds
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository  # Maven local repository path where dependencies are stored
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}  # Cache key based on pom.xml
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Run TestNG Batch Suite
+        run: mvn test -Dsurefire.suiteXmlFiles=Batch_Test_Scripts/E2E_batchTest.xml
+
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExtentReport
+          path: Reports/
+          if-no-files-found: warn
+
+      - name: Commit HTML report to repository
+        if: success()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git pull origin main
+          git add Reports/*.html
+          git commit -m "Add test report [skip ci]" || echo "No changes to commit"
+          git push origin main
+      
+      - name: Wait for GitHub Pages Deployment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Waiting for pages-build-deployment to complete..."
+          
+          for i in {1..30}; do
+            RUN=$(gh run list --workflow="pages-build-deployment" --branch=main --limit=1 --json databaseId,status,conclusion -q '.[0]')
+            STATUS=$(echo "$RUN" | jq -r '.status')
+            CONCLUSION=$(echo "$RUN" | jq -r '.conclusion')
+            echo "Status: $STATUS | Conclusion: $CONCLUSION"
+            if [[ "$STATUS" == "completed" ]]; then
+              if [[ "$CONCLUSION" == "success" ]]; then
+                echo "✅ Pages deployment successful!"
+                break
+              else
+                echo "❌ Pages deployment failed!"
+                exit 1
+              fi
+            fi
+            echo "⏳ Waiting..."
+            sleep 10
+          done
+      # - name: Generate Live Report URL
+      #   run: |
+      #       REPORT_NAME=$(find Reports -name "*.html" | head -n 1 | xargs -I {} basename "{}" | tr -d '\n')
+      #       ENCODED_REPORT_NAME=$(echo "$REPORT_NAME" | jq -sRr @uri | sed 's/\n//g')
+      #       echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
+      
+      - name: Print Report Link
+        run: |
+          # Find the latest .html report
+          REPORT_PATH=$(find Reports -name "*.html" -type f -exec stat --format='%Y %n' {} \; | sort -n | tail -n 1 | cut -d' ' -f2-)
+          # Get the filename (basename) and clean any characters after .html
+          REPORT_NAME=$(basename "$REPORT_PATH" | sed -E 's/\.html.*/.html/')
+          
+          # Encode the cleaned report name for the URL
+          ENCODED_REPORT_NAME=$(printf "%s" "$REPORT_NAME" | jq -sRr @uri)
+          
+          # Output the final result
+          echo "Final Report Name: $REPORT_NAME"
+          echo "Encoded Report Name: $ENCODED_REPORT_NAME"
+          echo "🔗 Live Report URL: https://hashcodes7.github.io/WMS_Automation/Reports/$ENCODED_REPORT_NAME"
