@@ -3,16 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WMS_Inbound_Batch_1.WMS_LPN_Multi_SKU">
+      <class name="P0_TestCases.TC59_P0_Linesheet_CreateNewFilter">
         <methods>
           <include name="afterMethod"/>
           <include name="tearDown"/>
+          <include name="P0_TC59_Linesheet_CreateNewFilter" invocation-numbers="0"/>
           <include name="setUp"/>
-          <include name="CreateSummary"/>
-          <include name="ASNExecuteCart" invocation-numbers="0"/>
           <include name="setUpend"/>
+          <include name="CreateSummary"/>
         </methods>
-      </class> <!-- WMS_Inbound_Batch_1.WMS_LPN_Multi_SKU -->
+      </class> <!-- P0_TestCases.TC59_P0_Linesheet_CreateNewFilter -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
